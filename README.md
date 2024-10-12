@@ -1,2 +1,1 @@
-# Means-hf24-codebase
-it contains all code for appwrite Hackathon
+## All code will be pushed to this repo till 25 oct .
