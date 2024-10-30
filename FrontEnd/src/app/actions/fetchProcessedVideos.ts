@@ -1,15 +1,15 @@
 'use server'
-
-// import { auth } from "@clerk/nextjs/server";
+import { getUser } from "./getUser";
 import { connectToDatabase } from "@/lib/mongodb";
 import { Video } from '@/types/processedVideoTypes';
 
 export async function fetchProcessedVideos(): Promise<Video[]> {
-  // const { userId } = auth();
+  const data = await getUser();
+   const  userId  = data.userId
 
-  // if (!userId) {
-  //   throw new Error('Not authenticated');
-  // }
+  if (!userId) {
+    throw new Error('Not authenticated');
+  }
 
   try {
     const { db } = await connectToDatabase();
@@ -27,7 +27,7 @@ export async function fetchProcessedVideos(): Promise<Video[]> {
       duration: card.duration,
       processingDate: new Date(card.processingDate).toISOString(), // Convert to ISO string format
     }));
-
+    console.log(videos);
     return videos;
   } catch (error) {
     console.error('Error fetching processed videos:', error);

@@ -1,21 +1,21 @@
-// // app/api/getToken/route.ts (Next.js 13+)
-// // import { auth } from "@clerk/nextjs/server";
 
-// export async function GET() {
-//   // Use Clerk's `auth` function to retrieve the current user session.
-//   // const { sessionId, getToken } = auth();
+import { getCurrentSession } from "@/lib/server/appwrite";
 
-//   // Check if a session is available
-//   if (!sessionId) {
-//     return new Response(JSON.stringify({ error: "Not authenticated" }), {
-//       status: 401,
-//     });
-//   }
+export async function GET() {
+  // Use Clerk's `auth` function to retrieve the current user session.
+   const sessionId = await getCurrentSession();
 
-//   // Get the token (you can also specify the type of token here if needed)
-//   const token = await getToken();
+  // Check if a session is available
+  if (!sessionId) {
+    return new Response(JSON.stringify({ error: "Not authenticated" }), {
+      status: 401,
+    });
+  }
+
+  // Get the token (you can also specify the type of token here if needed)
+  const token = sessionId;
   
-//   return new Response(JSON.stringify({ token }), {
-//     status: 200,
-//   });
-// }
+  return new Response(JSON.stringify({ token }), {
+    status: 200,
+  });
+}

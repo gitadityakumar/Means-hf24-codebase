@@ -45,6 +45,7 @@ async function signUpWithEmail(formData: FormData) {
 
 export default async function SignUpPage() {
   const user = await getLoggedInUser();
+  console.log(user);
   if (user) redirect("/dashboard");
 
   return (

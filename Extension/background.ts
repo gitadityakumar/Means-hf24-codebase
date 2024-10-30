@@ -1,6 +1,6 @@
 let storedUserId: string | null = null;
 
-async function authenticateUser(): Promise<string | null> {
+async function authenticateUser(): Promise<any> {
   try {
     const response = await fetch('http://localhost:3002/api/auth', {
       method: 'POST',
@@ -22,13 +22,16 @@ async function authenticateUser(): Promise<string | null> {
       }
     } else {
       console.log('bg.ts**Authentication failed:', response.status);
+      showLoginPopup(); // Call the function if authentication fails
       return null;
     }
   } catch (error) {
     console.error('bg.ts**Authentication error:', error);
+    showLoginPopup(); // Call the function if there’s an error
     return null;
   }
 }
+
 
 async function sendVideoDataToBackend(videoData: any, userId?: string) {
   try {
@@ -74,3 +77,12 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     return true;
   }
 });
+
+function showLoginPopup() {
+  chrome.windows.create({
+    url: 'http://localhost:3000/sign-up', // Your Next.js login page URL
+    type: 'popup',
+    width: 400,
+    height: 600
+  });
+}

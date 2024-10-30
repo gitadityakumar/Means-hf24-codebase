@@ -44,3 +44,18 @@ export async function getLoggedInUser() {
     return null;
   }
 }
+
+export async function getCurrentSession() {
+  try {
+    const sessionCookie = cookies().get(SESSION_COOKIE);
+    if (!sessionCookie || !sessionCookie.value) {
+      return null;
+    }
+
+    const { account } = await createSessionClient();
+    const sessionDetails = await account.getSession(sessionCookie.value);
+    return sessionDetails;
+  } catch (error) {
+    return null;
+  }
+}

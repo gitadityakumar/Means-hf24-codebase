@@ -36,6 +36,6 @@ export default clientPromise
 
 export async function connectToDatabase(): Promise<{ client: MongoClient; db: Db }> {
   const client = await clientPromise
-  const db = client.db()
+  const db = client.db('videoDataDB')
   return { client, db }
 }

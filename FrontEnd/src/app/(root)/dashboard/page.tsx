@@ -25,6 +25,9 @@ const Page = () => {
     token
   );
   
+  useEffect(()=>{
+    const flow = fetch('/api/auth')
+  },[]);
  // token useEffect
 useEffect(() => {
   const fetchToken = async () => {
@@ -75,6 +78,7 @@ useEffect(() => {
           throw new Error("Failed to fetch videos");
         }
         const data: ApiResponse = await response.json();
+        console.log(data);
 
         if (data.videos) {
           setVideos(data.videos);

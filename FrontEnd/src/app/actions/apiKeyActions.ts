@@ -1,8 +1,8 @@
 'use server'
 
 import { MongoClient, ObjectId } from 'mongodb';
-import { encrypt, decrypt, EncryptedData, isEncryptedData } from '@/lib/encryption';
-// import { auth } from "@clerk/nextjs/server";
+import { encrypt,  EncryptedData, isEncryptedData } from '@/lib/encryption';
+import {getUser} from '@/app/actions/getUser'
 
 const uri = process.env.MONGODB_URI as string;
 
@@ -19,17 +19,14 @@ interface ActionResult {
   apiKey?: object;
 }
 
-// async function getUserId(): Promise<string | null> {
-//   // const { userId } = auth();
-//   return userId;
-// }
+
 
 export async function storeApiKey(service: string, apiKey: string): Promise<ActionResult> {
   const client = new MongoClient(uri);
   
   try {
-    // const userId = await getUserId();
-    const userId = "testing"
+      const data = await getUser();
+    const userId = data.userId;
     if (!userId) {
       return { success: false, message: "User not authenticated" };
     }
@@ -58,7 +55,8 @@ export async function getApiKey(service: string): Promise<ActionResult> {
   const client = new MongoClient(uri);
   
   try {
-    const userId = await getUserId();
+    const data = await getUser();
+    const userId = data.userId;
     if (!userId) {
       return { success: false, message: "User not authenticated" };
     }

@@ -26,7 +26,7 @@ async function signInWithEmail(formData: FormData) {
 }
 
 export default async function SignInPage() {
-  // const user = await getLoggedInUser();
+  
 
   return (
     <div className="max-w-lg w-full mx-auto px-6 py-8 bg-violet-50">
