@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  be2:
+    build:
+      context: ./BE2
+      dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=production
+      - PORT=3003
+      - DRAGONFLY_URL=dragonfly:6379  # URL to connect to Dragonfly instance
+    ports:
+      - "3003:3003"  # Expose BE2 on port 3003
+    depends_on:
+      - primarybackend
+      - worker
+      - dragonfly
+
+  frontend:
+    build:
+      context: ./FrontEnd
+      dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    ports:
+      - "3000:3000"  # Expose frontend on port 3000
+    depends_on:
+      - primarybackend
+
+  primarybackend:
+    build:
+      context: ./PrimaryBackend
+      dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=production
+      - PORT=3002
+    ports:
+      - "3002:3002"  # Expose primary backend on port 3002
+
+  worker:
+    build:
+      context: ./Worker
+      dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=production
+      - DRAGONFLY_URL=dragonfly:6379  # URL to connect to Dragonfly instance
+    depends_on:
+      - dragonfly
+
+  dragonfly:
+    image: chainguard/dragonfly:latest
+    environment:
+      - DRAGONFLY_MAX_MEMORY=1GB  # Optional: set max memory for Dragonfly
+    ports:
+      - "6379:6379"  

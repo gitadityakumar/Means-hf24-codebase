@@ -95,16 +95,7 @@ export default  function Layout({ children }: Readonly<{children: ReactNode}>) {
             </div>
           </div>
           <div>
-          <SidebarLink
-            link={{
-              // label: ` Daily quota :    ${JSON.stringify(user?.publicMetadata.currentCount)} / ${JSON.stringify(user?.publicMetadata.limit)}`,
-              label:"Quota",
-              href: "#",
-              }}
-  className="backdrop-blur-sm bg-white/20 p-3 mb-4 rounded-full border border-white/30 shadow-lg hover:bg-white/30 transition-all duration-300 "
-  textClassName="text-transparent   bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600"
->
-          </SidebarLink>
+          
           <SidebarLink
             link={{
              label: ` Hello ${userData.name}`,

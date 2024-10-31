@@ -145,7 +145,7 @@ const CustomComponent: React.FC<CustomComponentProps> = ({
         isProcessing ? 'cursor-not-allowed' : ''
       }`}
     >
-      <span className={`transition-opacity duration-[${progress}] ${isProcessing ? 'opacity-0' : 'opacity-100'}`}>
+      <span className={`transition-opacity duration-500 ${isProcessing ? 'opacity-0' : 'opacity-100'}`}>
         {buttonText}
       </span>
       <canvas

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "install": "concurrently \"cd BE2 && npm run i\" \"cd FrontEnd && npm run i\" \"cd PrimaryBackend && npm run i\" \"cd Worker && npm run i\"",
+    "add": "concurrently \"cd BE2 && npm run i\" \"cd FrontEnd && npm run i\" \"cd PrimaryBackend && npm run i\" \"cd Worker && npm run i\"",
     "dev": "concurrently \"cd BE2 && npm run dev\" \"cd FrontEnd && npm run dev\" \"cd PrimaryBackend && npm run dev\" \"cd Worker && npm run dev\""
   },
   "keywords": [],
