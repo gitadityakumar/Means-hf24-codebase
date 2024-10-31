@@ -51,6 +51,10 @@ npm run add
 # Set up environment variables for each directory except Extension
 cp .env.sample .env
 
+# for queues :-
+# start your docker desktop and run this command in terminal
+docker run -d -p 6379:6379 chainguard/dragonfly:latest
+
 # Run the development server
 npm run dev
 ```
