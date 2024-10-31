@@ -1,7 +1,7 @@
-# YouTube Learning Assistant 🎓
+# Means-HF 🎓
 
 ## Overview
-YouTube Learning Assistant is a powerful learning tool that helps users improve their English vocabulary while watching YouTube videos. Built for the Appwrite Hackathon, this project combines a browser extension with a web application to create an seamless learning experience.
+Means-hf is a powerful learning tool that helps users improve their English vocabulary while watching YouTube videos. Built for the Appwrite Hackathon, this project combines a browser extension with a web application to create an seamless learning experience.
 
 ![Project Banner](featurefile.png)
 - **Automated Vocabulary Extraction**: Uses Gemini AI to extract and explain medium-level English vocabulary
